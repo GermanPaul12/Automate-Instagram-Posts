@@ -27,10 +27,13 @@ def make_post():
     #print(random_quote)
     height = 800
 
-    textwidth, textheight = draw.textsize(text.decode("utf-8").replace(",","\n"), font)
-    width, height = img.size 
-    x=width/2-textwidth/2
-    y=(height+800)/2-textheight/2
+    bbox = draw.textbbox((0, 0), text.decode("utf-8").replace(",", "\n"), font=font)
+    textwidth = bbox[2] - bbox[0]
+    textheight = bbox[3] - bbox[1]
+    
+    width, height = img.size
+    x = width / 2 - textwidth / 2
+    y = (height + 800) / 2 - textheight / 2
 
     #for i in text.decode("utf-8").split(","):
 
