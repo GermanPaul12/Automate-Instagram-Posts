@@ -7,6 +7,8 @@ def make_post():
     image_random_number = random.randint(1, 6)
     img_url = f"https://raw.githubusercontent.com/GermanPaul12/Automate-Instagram-Posts/main/Images/{image_random_number}.png"
     img = Image.open(requests.get(img_url, stream = True).raw)
+    img = img.convert("RGB")
+    
     draw = ImageDraw.Draw(img)
 
     text_url = "https://raw.githubusercontent.com/GermanPaul12/Scrape-Stoic-Quotes-with-Requests-and-BeautifulSoup/main/quote.txt"
@@ -38,7 +40,8 @@ def make_post():
             stroke_width=1, stroke_fill="#F1EFEF",
             )
     #height += 50
-    img.save('output.png')
+    img.save('output.jpg', 'JPEG', quality=100)
+    
     #img.show()
     
 if __name__ == "__main__":
